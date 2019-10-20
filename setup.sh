@@ -2,6 +2,7 @@
 
 CARTHAGE_VERSION=0.33.0
 SWIFTFORMAT_VERSION=0.40.10
+SWIFTLINT_VERSION=0.33.0
 SOURCERY_VERSION=0.16.2
 SWIFTGEN_VERSION="SwiftGen v6.1.0 (Stencil v0.13.1, StencilSwiftKit v2.7.2, SwiftGenKit v6.1.0)"
 
@@ -19,7 +20,7 @@ if which carthage >/dev/null; then
 	CURRENT_CARTHAGE_VERSION=$(swiftlint version)
 	if [ $CURRENT_CARTHAGE_VERSION != $CARTHAGE_VERSION ]; then
 		brew upgrade carthage
-		echo "✅ upgraded to $(CARTHAGE_VERSION)"
+		echo "✅ upgraded to version $(CARTHAGE_VERSION)"
 	else
 		brew switch carthage $CARTHAGE_VERSION
 		echo "✅ installed actual version of Carthage"
@@ -35,7 +36,7 @@ if which swiftformat >/dev/null; then
 	CURRENT_SWIFTFORMAT_VERSION=$(swiftformat --version)
 	if [ $CURRENT_SWIFTFORMAT_VERSION != $SWIFTFORMAT_VERSION ]; then
 		brew upgrade swiftformat
-		echo "✅ upgraded to $(SWIFTFORMAT_VERSION)"
+		echo "✅ upgraded to version $(SWIFTFORMAT_VERSION)"
 	else
 		brew switch swiftformat $SWIFTFORMAT_VERSION
 		echo "✅ installed actual version of SwiftFormat"
@@ -45,13 +46,29 @@ else
 	brew install swiftformat
 fi
 
+echo "🕐 Checking the existence of SwiftLint with version ${SWIFTLINT_VERSION}..."
+
+if which swiftlint >/dev/null; then
+    CURRENT_SWIFTLINT_VERSION=$(swiftlint version)
+    if [ $CURRENT_SWIFTLINT_VERSION != $SWIFTLINT_VERSION ]; then
+        brew upgrade swiftlint
+        echo "✅ upgraded to version $(SWIFTLINT_VERSION)"
+    else
+        brew switch swiftlint $SWIFTLINT_VERSION
+        echo "✅ installed actual version of SwiftLint"
+    fi
+else
+    echo "Installing SwiftLint"
+    brew install swiftlint
+fi
+
 echo "🕒 Checking the existence of Sourcery with version ${SOURCERY_VERSION}..."
 
 if which sourcery >/dev/null; then
 	CURRENT_SOURCERY_VERSION=$(sourcery --version)
 	if [ $CURRENT_SOURCERY_VERSION != $SOURCERY_VERSION ]; then
 		brew upgrade sourcery
-		echo "✅ upgraded to $(SOURCERY_VERSION)"
+		echo "✅ upgraded to version $(SOURCERY_VERSION)"
 	else
 		brew switch sourcery $SOURCERY_VERSION
 		echo "✅ installed actual version of Sourcery"
@@ -74,7 +91,7 @@ if which swiftgen >/dev/null; then
 	CURRENT_SWIFTGEN_VERSION=$(swiftgen --version)
 	if [ $CURRENT_SWIFTGEN_VERSION != $SWIFTGEN_VERSION ]; then
 		brew upgrade swiftgen
-		echo "✅ upgraded to $(SWIFTGEN_VERSION)"
+		echo "✅ upgraded to version $(SWIFTGEN_VERSION)"
 	else
 		echo "✅ installed actual version of SwiftGen"
 	fi

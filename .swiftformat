@@ -1,0 +1,20 @@
+# format options
+--allman false
+--indent 4
+--ranges no-space
+--commas inline
+--wrapcollections after-first
+--closingparen same-line
+
+# file options
+--exclude Pods, Resources
+
+--disable andOperator, blankLinesAroundMark, fileHeader, linebreaks, numberFormatting, redundantRawValues, strongOutlets, blankLinesAtStartOfScope
+
+
+
+
+
+
+
+
