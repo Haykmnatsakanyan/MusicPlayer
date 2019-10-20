@@ -259,7 +259,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftformat >/dev/null; then\n    swiftformat .\nelse\n    sh setup.sh\nfi\n";
+			shellScript = "if which swiftformat >/dev/null; then\n    swiftformat --swiftversion 5.0 .\nelse\n    sh setup.sh\nfi\n";
 		};
 		8D592C7E235C70BD0076F148 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
